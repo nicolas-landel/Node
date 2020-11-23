@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.use((req, res, next) => {
-    res.json({message: '1ere requete'});
+    // res.json({message: '1ere requete'});
     next();
 });
 
