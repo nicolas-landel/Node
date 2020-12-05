@@ -6,7 +6,8 @@ export default {
     }
 }
 
-AuthenticationService.register({
+/* AuthenticationService.register({
     'email': 'test@hotmail.com',
     'password': '123456'
-})
+}) */
+
