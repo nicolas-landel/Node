@@ -16,8 +16,10 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.get('/status', (req, res) => {
-  res.send({message: 'votre requete a bien été reçue'});
+app.post('/register', (req, res) => {
+  res.send({
+    message: `Hello ${req.body.email}! You have been register.`
+  });
 });
 
 
