@@ -5,9 +5,3 @@ export default {
         return Api().post('register', credentials)
     }
 }
-
-/* AuthenticationService.register({
-    'email': 'test@hotmail.com',
-    'password': '123456'
-}) */
-
