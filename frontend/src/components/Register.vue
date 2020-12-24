@@ -33,8 +33,11 @@ export default {
     }
   },
   methods: {
-    register () {
-      console.log('button was clicked', this.email, this.password)
+    async register () {
+      await AuthenticationService.register({
+        email: this.email,
+        password: this.password
+      })
     }
 
   }
