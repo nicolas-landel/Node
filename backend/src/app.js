@@ -5,6 +5,7 @@ const morgan = require('morgan');
 
 const app = express();
 app.use(morgan('combined'));
+app.use(bodyParser.json());
 app.use(cors());
 
 // app.use((req, res, next) => {
@@ -14,7 +15,6 @@ app.use(cors());
 //     next();
 //   });
 
-app.use(bodyParser.json());
 
 app.post('/register', (req, res) => {
   res.send({
