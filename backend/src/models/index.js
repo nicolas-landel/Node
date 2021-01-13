@@ -9,7 +9,6 @@ const sequelize = new Sequelize(
     config.db.user,
     config.db.password,
     config.db.options,
-
 )
 
 fs
