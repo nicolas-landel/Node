@@ -1,20 +1,23 @@
 <template>
     <div>
-        <h1>Register</h1>
-        <input
-            type="email"
-            name="email"
-            v-model="email"
-            placeholder="youremail@hotmail.com"
-        />
-        <br>
-        <input
-            type="password"
-            name="password"
-            v-model="password"
-            placeholder="password"
-        />
-        <br>
+      <h1>Démonstration pour la présentation</h1>
+        <h4>Register</h4>
+        <div id="form-registration">
+          <input
+              type="email"
+              name="email"
+              v-model="email"
+              placeholder="youremail@hotmail.com"
+          />
+          <br>
+          <input
+              type="password"
+              name="password"
+              v-model="password"
+              placeholder="password"
+          />
+          <br>
+        </div>
         <button
             @click="register"
             >Register</button>
@@ -38,6 +41,8 @@ export default {
         email: this.email,
         password: this.password
       })
+      var form = document.getElementById('form-registration')
+      form.textContent = 'Thank you for your registration'
     }
 
   }
