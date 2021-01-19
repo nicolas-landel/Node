@@ -6,7 +6,7 @@ module.exports = {
         const schema = Joi.object({
             email: Joi.string().email(),
             password: Joi.string().regex(
-                new RegExp('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,50}$')
+                new RegExp('^[a-zA-Z0-9@$!%#?&]{8,32}$')
             )
         })
 
