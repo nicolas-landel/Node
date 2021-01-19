@@ -18,6 +18,7 @@
           />
           <br>
         </div>
+        <div class="error" v-html="error" />
         <button
             @click="register"
             >Register</button>
@@ -32,17 +33,22 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
     async register () {
-      await AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      })
-      var form = document.getElementById('form-registration')
-      form.textContent = 'Thank you for your registration'
+      try {
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+        var form = document.getElementById('form-registration')
+        form.textContent = 'Thank you for your registration'
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
 
   }
