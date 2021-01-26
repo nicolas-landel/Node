@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 const Product = require('./models/Product');
 
 const app = express();
 
-const connectionUri = 'mongodb+srv://nlandel:xsD2UZkuCG2MZf5p@cluster0.96blr.mongodb.net/test.test?retryWrites=true&w=majority';
+const uriPassword = process.env.URIPASS;
+const connectionUri = `mongodb+srv://nlandel:${uriPassword}@cluster0.96blr.mongodb.net/test.test?retryWrites=true&w=majority`;
 
   try {
     // Connect to the MongoDB cluster
