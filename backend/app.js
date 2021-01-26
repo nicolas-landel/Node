@@ -12,21 +12,13 @@ const connectionUri = 'mongodb+srv://nlandel:xsD2UZkuCG2MZf5p@cluster0.96blr.mon
      mongoose.connect(
       connectionUri,
       { useNewUrlParser: true, useUnifiedTopology: true },
-      () => console.log(" Mongoose is connected")
+      () => console.log("Connected to the database")
     );
 
   } catch (e) {
-    console.log("could not connect", e);
+    console.log("The connection to the database failed!", e);
   }
 
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://nlandel:xsD2UZkuCG2MZf5p@cluster0.96blr.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
