@@ -1,3 +1,4 @@
+
 // import Api from '@/services/Api'
 
 // export default {
@@ -8,6 +9,7 @@
 //       }
 //     })
 //   }
+
 //   show (productId) {
 //     return Api().get(`products/${productId}`)
 //   },

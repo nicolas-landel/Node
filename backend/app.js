@@ -5,6 +5,7 @@ const todosRoutes = require('./routes/todos');
 require('dotenv').config();
 const Todo = require('./models/Todo');
 
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -32,8 +33,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/todos', todosRoutes);
-
-
 
 app.get('/todos/:id', (req, res, next) => {
     Todo.findOne({ id: req.params.id })
