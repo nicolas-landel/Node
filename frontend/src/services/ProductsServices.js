@@ -1,13 +1,15 @@
-import Api from '@/services/Api'
 
-export default {
-  index (search) {
-    return Api().get('products', {
-      params: {
-        search: search
-      }
-    })
-  }
+// import Api from '@/services/Api'
+
+// export default {
+//   index (search) {
+//     return Api().get('todos', {
+//       params: {
+//         search: search
+//       }
+//     })
+//   }
+
 //   show (productId) {
 //     return Api().get(`products/${productId}`)
 //   },

@@ -1,0 +1,28 @@
+/* CSS  */
+
+.btn {
+  background-color: #5599ff;
+  border-radius: 0.25em;
+  border: 1px #5599ff solid;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #2c6ccc;
+}
+
+form {
+  display: flex;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.centered-form {
+  place-content: center;
+}
+
+.add-todo-form {
+  margin: 1em;
+}

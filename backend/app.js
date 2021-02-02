@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const productsRoutes = require('./routes/products');
+const todosRoutes = require('./routes/todos');
 require('dotenv').config();
-const Product = require('./models/Product');
+const Todo = require('./models/Todo');
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -31,19 +32,17 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/products', productsRoutes);
+app.use('/todos', todosRoutes);
 
-
-
-app.get('/products/:id', (req, res, next) => {
-    Product.findOne({ id: req.params.id })
-        .then(product => res.status(200).json(product))
+app.get('/todos/:id', (req, res, next) => {
+    Todo.findOne({ id: req.params.id })
+        .then(todo => res.status(200).json(todo))
         .catch(error => res.status(404).json({error}))
 })
 
-app.get('/products', (req, res, next) => {
-    Product.find()
-        .then(products => res.status(200).json(products))
+app.get('/todos', (req, res, next) => {
+    Todo.find()
+        .then(todos => res.status(200).json(todos))
         .catch(error => res.status(400).json({ error }))
 })
 
