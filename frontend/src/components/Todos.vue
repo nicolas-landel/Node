@@ -30,10 +30,13 @@ export default {
   },
   methods: {
     deleteTodo (id) {
-      this.todos = this.todos.filter(todo => todo.id !== id)
+      axios.delete('http://localhost:3000/todos', { id: id })
+        .then(request => {
+          console.log('DELTE', this.todos, request.body)
+        })
+        .catch(err => console.log(err))
     },
     addTodo (newTodo) {
-      console.log('addddd', newTodo)
       axios.post('http://localhost:3000/todos', { title: newTodo.title })
         .then(request => console.log('CREATED !!'))
         .catch(err => console.log(err))
