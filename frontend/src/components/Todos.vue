@@ -31,14 +31,16 @@ export default {
   methods: {
     deleteTodo (id) {
       axios.delete('http://localhost:3000/todos', { id: id })
-        .then(request => {
-          console.log('DELTE', this.todos, request.body)
+        .then(response => {
+          this.todos = response.data.todos
         })
         .catch(err => console.log(err))
     },
     addTodo (newTodo) {
       axios.post('http://localhost:3000/todos', { title: newTodo.title })
-        .then(request => console.log('CREATED !!'))
+        .then(response => {
+          this.todos = response.data.todos
+        })
         .catch(err => console.log(err))
     }
   },

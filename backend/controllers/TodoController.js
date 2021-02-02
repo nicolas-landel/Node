@@ -19,7 +19,10 @@ module.exports = {
             })
             newTodo.completed = false
             newTodo.save()
-            res.status(201).send()
+            const allTodos = await Todo.find()
+            res.status(201).send({
+                todos: allTodos
+            })
         } catch (err) {
             res.status(500).send({
                 error: `an error has occured trying to create the todo, ${err}`
@@ -29,9 +32,10 @@ module.exports = {
     async delete (req, res) {
         try {
             await Todo.deleteOne({id: req.body.id})
-            console.log("DELETE")
+            const allTodos = await Todo.find()
             res.status(200).send({
-                message: 'Todo deleted'
+                message: 'Todo deleted',
+                todos: allTodos
             })
         } catch (err) {
             res.status(500).send({err})
