@@ -25,7 +25,7 @@ export default {
   },
   data () {
     return {
-      todos: []
+      todos: null
     }
   },
   methods: {
@@ -33,10 +33,13 @@ export default {
       this.todos = this.todos.filter(todo => todo.id !== id)
     },
     addTodo (newTodo) {
-      this.todos = [...this.todos, newTodo]
+      console.log('addddd', newTodo)
+      axios.post('http://localhost:3000/todos', { title: newTodo.title })
+        .then(request => console.log('CREATED !!'))
+        .catch(err => console.log(err))
     }
   },
-  get () {
+  async mounted () {
     axios.get('http://localhost:3000/todos')
       .then(response => {
         this.todos = response.data
