@@ -19,8 +19,7 @@ export default {
     addTodo (e) {
       e.preventDefault()
       const newTodo = {
-        title: this.title, // Use 'this' because we said v-model="title" in the DOM
-        completed: false
+        title: this.title // Use 'this' because we said v-model="title" in the DOM
       }
       this.$emit('add-todo', newTodo)
 

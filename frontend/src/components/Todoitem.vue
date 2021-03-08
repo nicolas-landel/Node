@@ -1,8 +1,9 @@
 <template>
-  <div class="todo-item" v-bind:class="{'is-complete':todo.completed}">
+  <div class="todo-item" v-bind:class="{'is-complete':todo.completed}" @mouseover="underline" @mouseout="removeUnderline" ref="item">
     <p>
       <input type="checkbox" v-on:change="markComplete">
       {{ todo.title }}
+      
       <button @click="$emit('del-todo', todo.id)"
       class="del">x</button>
     </p>
@@ -17,6 +18,12 @@ export default {
   methods: {
     markComplete () {
       this.todo.completed = !this.todo.completed
+    },
+    underline () {
+      this.$refs.item.classList.add('underline')
+    },
+    removeUnderline () {
+      this.$refs.item.classList.remove('underline')
     }
   }
 }
@@ -36,6 +43,9 @@ export default {
   .del:hover {
     cursor: pointer;
     background-color: rgb(224, 54, 54);
+  }
+  .underline {
+    text-decoration: underline;
   }
 
 </style>

@@ -25,18 +25,26 @@ export default {
   },
   data () {
     return {
-      todos: []
+      todos: null
     }
   },
   methods: {
     deleteTodo (id) {
-      this.todos = this.todos.filter(todo => todo.id !== id)
+      axios.delete('http://localhost:3000/todos', { id: id })
+        .then(response => {
+          this.todos = response.data.todos
+        })
+        .catch(err => console.log(err))
     },
     addTodo (newTodo) {
-      this.todos = [...this.todos, newTodo]
+      axios.post('http://localhost:3000/todos', { title: newTodo.title })
+        .then(response => {
+          this.todos = response.data.todos
+        })
+        .catch(err => console.log(err))
     }
   },
-  get () {
+  async mounted () {
     axios.get('http://localhost:3000/todos')
       .then(response => {
         this.todos = response.data
