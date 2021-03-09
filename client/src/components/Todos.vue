@@ -11,47 +11,47 @@
 </template>
 
 <script>
-import TodoItem from './Todoitem.vue'
-import Header from './layout/Header.vue'
-import AddTodo from './AddTodo.vue'
-import axios from 'axios'
+// import TodoItem from './Todoitem.vue'
+// import Header from './layout/Header.vue'
+// import AddTodo from './AddTodo.vue'
+// import axios from 'axios'
 
-export default {
-  name: 'todo',
-  components: {
-    TodoItem,
-    Header,
-    AddTodo
-  },
-  data () {
-    return {
-      todos: null
-    }
-  },
-  methods: {
-    deleteTodo (id) {
-      axios.delete('http://localhost:3000/todos', { id: id })
-        .then(response => {
-          this.todos = response.data.todos
-        })
-        .catch(err => console.log(err))
-    },
-    addTodo (newTodo) {
-      axios.post('http://localhost:3000/todos', { title: newTodo.title })
-        .then(response => {
-          this.todos = response.data.todos
-        })
-        .catch(err => console.log(err))
-    }
-  },
-  async mounted () {
-    axios.get('http://localhost:3000/todos')
-      .then(response => {
-        this.todos = response.data
-      })
-      .catch(err => console.log(err))
-  }
-}
+// export default {
+//   name: 'todo',
+//   components: {
+//     TodoItem,
+//     Header,
+//     AddTodo
+//   },
+//   data () {
+//     return {
+//       todos: null
+//     }
+//   },
+//   methods: {
+//     deleteTodo (id) {
+//       axios.delete('http://localhost:3000/todos', { id: id })
+//         .then(response => {
+//           this.todos = response.data.todos
+//         })
+//         .catch(err => console.log(err))
+//     },
+//     addTodo (newTodo) {
+//       axios.post('http://localhost:3000/todos', { title: newTodo.title })
+//         .then(response => {
+//           this.todos = response.data.todos
+//         })
+//         .catch(err => console.log(err))
+//     }
+//   },
+//   async mounted () {
+//     axios.get('http://localhost:3000/todos')
+//       .then(response => {
+//         this.todos = response.data
+//       })
+//       .catch(err => console.log(err))
+//   }
+// }
 </script>
 <style scoped>
 
