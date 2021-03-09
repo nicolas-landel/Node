@@ -10,23 +10,27 @@
 
 <script>
 import Modal from './Modal.vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Homepage',
   components: { Modal },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      header: 'Do you want to see the todos?',
-      showModal: false,
+  setup() {
+    const msg = ref('Welcome to Your Vue.js App')
+    const header = ref('Do you want ot see the todos??')
+    const showModal = ref(false)
+    const toggleModal = async () => {
+      showModal.value = !showModal.value
     }
-  },
-  methods: {
-    toggleModal () {
-      this.showModal = !this.showModal
+    return {
+      msg,
+      header,
+      showModal,
+      toggleModal
     }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
