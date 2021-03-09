@@ -10,7 +10,7 @@
 
 <script>
 import Modal from './Modal.vue'
-import { ref } from 'vue'
+import { ref, onBeforeMount, onUpdated, onMounted } from 'vue'
 
 export default {
   name: 'Homepage',
@@ -22,12 +22,25 @@ export default {
     const toggleModal = async () => {
       showModal.value = !showModal.value
     }
+    const root = ref(null)
+    onBeforeMount(() => {
+       console.log('Before mounted in the composition api!', root.value)
+     })
+    onUpdated(() => {
+      console.log('updated in the composition api!')
+    })
+    onMounted(() => {
+      console.log('mounted in the composition api!', this)
+    })
     return {
       msg,
       header,
       showModal,
       toggleModal
     }
+  },
+  mounted() {
+    console.log('mounteeeed', this, this.$el)
   }
 }
 
