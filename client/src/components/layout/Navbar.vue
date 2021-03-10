@@ -2,13 +2,9 @@
   <div class="row">
     <div class="col-12">
         <div id="nav">
-            <router-link to="{ name: 'Homepage' }">Home</router-link> |
-            <router-link to="{ name: 'Todos' }">Todos</router-link>
+            <router-link to="/">Home</router-link> |
+            <router-link to="/Todos">Todos</router-link>
         </div>
-    </div>
-
-    <div class="col-12 bg-light">
-        <router-view />
     </div>
 </div>
 </template>

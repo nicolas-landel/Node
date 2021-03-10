@@ -1,7 +1,7 @@
 <template>
   <div class="todo-item" v-bind:class="{'is-complete':todo.completed}" @mouseover="underline" @mouseout="removeUnderline" ref="item">
     <p>
-      <input type="checkbox" v-on:change="markComplete">
+      <input type="checkbox" v-on:change="$emit('mark-complete', todo.id, todo.complete)">
       {{ todo.title }}
       
       <button @click="$emit('del-todo', todo.id)"
@@ -12,20 +12,28 @@
 </template>
 
 <script>
+// import { ref } from 'vue'
+
 export default {
   name: 'TodoItem',
-  // props: 'todo',
-  methods: {
-    markComplete () {
-      this.todo.completed = !this.todo.completed
-    },
-    underline () {
-      this.$refs.item.classList.add('underline')
-    },
-    removeUnderline () {
-      this.$refs.item.classList.remove('underline')
-    }
-  }
+  props: {
+    todo: Object
+  },
+  // setup (props) {
+  //   const todoCompleted = props.todo.completed
+  //   function markComplete() {
+  //     todoCompleted = !todoCompleted
+  //   }
+  //   return {
+  //     todoCompleted,
+  //     markCompleted
+  //   }
+  // },
+  // methods: {
+  //   markComplete() {
+  //     this.todo.value.completed = !this.todo.completed
+  //   }
+  // }
 }
 </script>
 <style scoped>

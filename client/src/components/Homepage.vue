@@ -5,12 +5,19 @@
       <Modal :header="header" @close="toggleModal" theme="green" />
     </div>
     <button @click="toggleModal">Go todos</button>
+
+    <button @click='open = !open'> Toggle Animation </button>
+    <transition name="fade">
+      <p v-if='open' class='example-div'>
+        Hello World
+      </p>
+    </transition>
   </div>
 </template>
 
 <script>
 import Modal from './Modal.vue'
-import { ref, onBeforeMount, onUpdated, onMounted } from 'vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Homepage',
@@ -22,11 +29,14 @@ export default {
     const toggleModal = async () => {
       showModal.value = !showModal.value
     }
+
+    const open = ref(true)
     return {
       msg,
       header,
       showModal,
-      toggleModal
+      toggleModal,
+      open,
     }
   }
 }

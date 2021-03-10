@@ -4,13 +4,14 @@
   <AddTodo v-on:add-todo="addTodo" />
   <div class="todo">
       <div v-bind:key="todo.id" v-for="todo in todos">
-        <TodoItem v-bind:todo="todo" v-on:del-todo="deleteTodo" />
+        <TodoItem v-bind:todo="todo" v-on:del-todo="deleteTodo" v-on:mark-complete="markComplete" />
       </div>
   </div>
 </div>
 </template>
 
 <script>
+// import { ref } from 'vue'
 import TodoItem from './Todoitem.vue'
 import Header from './layout/Header.vue'
 import AddTodo from './AddTodo.vue'
@@ -42,6 +43,10 @@ export default {
           this.todos = response.data.todos
         })
         .catch(err => console.log(err))
+    },
+    markComplete (id, complete) {
+      
+
     }
   },
   async mounted () {
@@ -52,6 +57,33 @@ export default {
       .catch(err => console.log(err))
   }
 }
+
+// export default {
+//   name: 'todo',
+//   components: {
+//     TodoItem,
+//     Header,
+//     AddTodo
+//   },
+//   setup () {
+//     const todos = ref(null)
+//     const getTodos = () => {
+//       axios.get('http://localhost:3000/todos')
+//         .then(response => {
+//               todos.value = response.data
+//               console.log("Rep", todos.value)
+//             })
+//         .catch(err => console.log(err))
+//     }
+//     return {
+//       todos,
+//       getTodos
+//     }
+//   },
+//   mounted () {
+//     this.getTodos()
+//   }
+// }
 </script>
 <style scoped>
 
