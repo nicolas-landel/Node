@@ -1,22 +1,17 @@
 <template>
 <div>
-  <Header />
-  <AddTodo v-on:add-todo="addTodo" />
-  <p v-if="message">{{ message }}</p>
-  
+  <Header />  
   <div class="todo">
       <div v-bind:key="todo.id" v-for="todo in todos">
-        <TodoItem v-if="!todo.completed"  v-bind:todo="todo" v-on:del-todo="deleteTodo" v-on:mark-complete="markComplete(todo._id)" />
+        <TodoItem v-if="todo.completed" v-bind:todo="todo" v-on:del-todo="deleteTodo" v-on:mark-complete="markComplete(todo._id)" />
       </div>
   </div>
 </div>
 </template>
 
 <script>
-// import { ref } from 'vue'
 import TodoItem from './Todoitem.vue'
 import Header from './layout/Header.vue'
-import AddTodo from './AddTodo.vue'
 import axios from 'axios'
 
 export default {
@@ -24,32 +19,16 @@ export default {
   components: {
     TodoItem,
     Header,
-    AddTodo
   },
   data () {
     return {
       todos: null,
-      message: null,
-      currentTab: 'Todos',
-      tabs: ['Todos', 'CompletedTodos'],
-    }
-  },
-  computed: {
-    currentTabComponent() {
-      return 'tab-' + this.currentTab.toLowerCase()
     }
   },
   methods: {
     deleteTodo (id) {
       console.log("iiii", id)
       axios.delete('http://localhost:3000/todos', { id: id })
-        .then(response => {
-          this.todos = response.data.todos
-        })
-        .catch(err => console.log(err))
-    },
-    addTodo (newTodo) {
-      axios.post('http://localhost:3000/todos', { title: newTodo.title })
         .then(response => {
           this.todos = response.data.todos
         })
@@ -76,33 +55,6 @@ export default {
       .catch(err => console.log(err))
   }
 }
-
-// export default {
-//   name: 'todo',
-//   components: {
-//     TodoItem,
-//     Header,
-//     AddTodo
-//   },
-//   setup () {
-//     const todos = ref(null)
-//     const getTodos = () => {
-//       axios.get('http://localhost:3000/todos')
-//         .then(response => {
-//               todos.value = response.data
-//               console.log("Rep", todos.value)
-//             })
-//         .catch(err => console.log(err))
-//     }
-//     return {
-//       todos,
-//       getTodos
-//     }
-//   },
-//   mounted () {
-//     this.getTodos()
-//   }
-// }
 </script>
 <style scoped>
 

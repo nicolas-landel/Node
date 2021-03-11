@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import Homepage from '@/components/Homepage'
-import Todos from '@/components/Todos'
+import Tab from '@/components/Tab'
 
 const routes = [
   {
@@ -11,7 +11,7 @@ const routes = [
   {
     path: '/todos',
     name: 'todos',
-    component: Todos
+    component: Tab
   },
   {
     path: '/:pathMatch(.*)*',
