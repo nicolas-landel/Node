@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { ref, provide, reactive } from 'vue'
 import Todos from './Todos.vue'
 import CompletedTodos from './CompletedTodos.vue'
 
@@ -18,19 +19,23 @@ export default {
   name: 'Tab',
   components: {
   },
-  data () {
-    return {
-      currentTab: 'Todos',
-      tabs: ['Todos', 'CompletedTodos'],
-    }
-  },
-  computed: {
-    currentTabComponent() {
-      if (this.currentTab.toLowerCase() == 'todos') {
+  setup() {
+    const currentTab = reactive('Todos')
+    const tabs = ref(['Todos', 'CompletedTodos'])
+    
+    function currentTabComponent() {
+      if (currentTab.value.toLowerCase() == 'todos') {
         return Todos
       } else {
         return CompletedTodos
       }
+    }
+    provide('tab', currentTab.value)
+    
+    return {
+      currentTab,
+      tabs,
+      currentTabComponent,
     }
   }
 }

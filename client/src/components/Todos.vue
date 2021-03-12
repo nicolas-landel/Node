@@ -2,11 +2,11 @@
 <div>
   <Header />
   <AddTodo v-on:add-todo="addTodo" />
-  <p v-if="message">{{ message }}</p>
+  <Message v-bind:message="message"/>
   
   <div class="todo">
       <div v-bind:key="todo.id" v-for="todo in todos">
-        <TodoItem v-if="!todo.completed"  v-bind:todo="todo" v-on:del-todo="deleteTodo" v-on:mark-complete="markComplete(todo._id)" />
+        <TodoItem v-if="!todo.completed"  v-bind:todo="todo" v-on:del-todo="deleteTodo(todo._id)" v-on:mark-complete="markComplete(todo._id)" />
       </div>
   </div>
 </div>
@@ -17,6 +17,7 @@
 import TodoItem from './Todoitem.vue'
 import Header from './layout/Header.vue'
 import AddTodo from './AddTodo.vue'
+import Message from './Message.vue'
 import axios from 'axios'
 
 export default {
@@ -24,12 +25,13 @@ export default {
   components: {
     TodoItem,
     Header,
-    AddTodo
+    AddTodo,
+    Message
   },
   data () {
     return {
       todos: null,
-      message: null,
+      message: "",
       currentTab: 'Todos',
       tabs: ['Todos', 'CompletedTodos'],
     }
@@ -60,12 +62,17 @@ export default {
       axios.post('http://localhost:3000/todos', { 'completed': id })
         .then(response => {
           this.message = response.data.message
-          setTimeout(function() {
-            console.log("timeout")
-            this.message = ""
-          }, 5000)
         })
         .catch(err => console.log(err))
+    },
+    resetMessage () {
+      console.log("resetMessage")
+      if (this.message != "") {
+        setTimeout( function() {
+          console.log("resetMessage okkkkk")
+          this.message = ""
+        }, 2000)
+      }
     }
   },
   async mounted () {

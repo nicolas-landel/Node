@@ -3,7 +3,7 @@
   <Header />  
   <div class="todo">
       <div v-bind:key="todo.id" v-for="todo in todos">
-        <TodoItem v-if="todo.completed" v-bind:todo="todo" v-on:del-todo="deleteTodo" v-on:mark-complete="markComplete(todo._id)" />
+        <TodoItem v-if="todo.completed" v-bind:todo="todo" v-on:del-todo="deleteTodo(todo._id)" v-on:mark-complete="markComplete(todo._id)" />
       </div>
   </div>
 </div>

@@ -46,9 +46,9 @@ module.exports = {
         }
     },
     async delete (req, res) {
-        console.log("delete", req.body._id)
+        console.log("delete", req.body.id)
         try {
-            await Todo.deleteOne({id: req.body._id})
+            await Todo.deleteOne({id: req.body.id})
             const allTodos = await Todo.find()
             res.status(200).send({
                 message: 'Todo deleted',
